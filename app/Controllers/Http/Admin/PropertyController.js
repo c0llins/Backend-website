@@ -4,7 +4,6 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 
 const Property = use("App/Models/Property")
-const Database = use("Database")
 
 class PropertyController {
   /**
