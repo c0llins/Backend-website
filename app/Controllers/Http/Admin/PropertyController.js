@@ -18,17 +18,11 @@ class PropertyController {
   async store({ request, response }) {
     const { proprietary_id, ...data } = request.post()
 
-    const trx = await Database.beginTransaction()
-
     try {
-      const property = await Property.create(data, trx)
-
-      await trx.commit()
+      const property = await Property.create(data)
 
       return response.created(property)
     } catch (exception) {
-      await trx.rollback()
-
       return response.status(400).send({
         error: {
           message: "Não foi possível criar a propriedade no momento"
